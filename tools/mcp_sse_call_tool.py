@@ -21,11 +21,11 @@ class McpSseTool(Tool):
             raise ValueError(f"servers_config must be a valid JSON string: {e}")
 
         tool_name = tool_parameters.get("tool_name", "")
-        print(f"tool_parameters: {tool_parameters}")
+        # print(f"tool_parameters: {tool_parameters}")
         if not tool_name:
             raise ValueError("Please fill in the tool_name")
         arguments_json = tool_parameters.get("arguments", "")
-        print(f"MCP_SSE_ARGS: {arguments_json}")
+        # print(f"MCP_SSE_ARGS: {arguments_json}")
         if not arguments_json:
             raise ValueError("Please fill in the arguments")
         try:
@@ -46,7 +46,7 @@ class McpSseTool(Tool):
             as_dict = ast.literal_eval(arguments_json)
             arguments = {k: str(v) for k, v in as_dict.items()}
 
-            print(f"MCP_SSE_ARGS_JSON: {arguments}")
+            # print(f"MCP_SSE_ARGS_JSON: {arguments}")
         except json.JSONDecodeError as e:
             raise ValueError(f"Arguments must be a valid JSON string: {e}")
 
