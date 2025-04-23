@@ -25,28 +25,14 @@ class McpSseTool(Tool):
         if not tool_name:
             raise ValueError("Please fill in the tool_name")
         arguments_json = tool_parameters.get("arguments", "")
-        print(f"MCP_SSE_ARGS: {arguments_json}")
+        print(f"TOOL_NAME: {tool_name}, MCP_SSE_ARGS: {arguments_json}, MCP_SSE_ARGS_TYPE: {type(arguments_json)}")
         if not arguments_json:
             # raise ValueError("Please fill in the arguments")
             logging.warning("Model didn't provide arguments")
-            arguments_json = "{}"
+            arguments_json = {}
         try:
-            """
-            Chatflow will return dict so that this wil cause json parse to failed
-
-            such as arguments_json will look like this 
-
-            {'limit': 5, 'order': 'random', 'sort': 'ascending'}
-
-            which is a str
-
-            directly feed this to json.loads will raise not double quote error
-
-            we should convert the str to dict and cast properties with double quote,
-            because all arguements pass to the tool are string
-            """
-            as_dict = ast.literal_eval(arguments_json)
-            arguments = {k: str(v) for k, v in as_dict.items()}
+            arguments = json.loads(arguments_json)
+            # print(f"argument_load: {arguments}")
 
             # print(f"MCP_SSE_ARGS_JSON: {arguments}")
         except json.JSONDecodeError as e:
