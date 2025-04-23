@@ -1,6 +1,6 @@
 identity:
   name: mcp_sse_call_tool
-  author: junjiem
+  author: ashless
   label:
     en_US: Call MCP Tool
     zh_Hans: 调用MCP工具

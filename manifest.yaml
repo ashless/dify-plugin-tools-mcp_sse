@@ -1,6 +1,6 @@
 version: 0.0.10
 type: plugin
-author: junjiem
+author: ashless
 name: mcp_sse
 label:
   en_US: MCP SSE

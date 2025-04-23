@@ -25,9 +25,11 @@ class McpSseTool(Tool):
         if not tool_name:
             raise ValueError("Please fill in the tool_name")
         arguments_json = tool_parameters.get("arguments", "")
-        # print(f"MCP_SSE_ARGS: {arguments_json}")
+        print(f"MCP_SSE_ARGS: {arguments_json}")
         if not arguments_json:
-            raise ValueError("Please fill in the arguments")
+            # raise ValueError("Please fill in the arguments")
+            logging.warning("Model didn't provide arguments")
+            arguments_json = "{}"
         try:
             """
             Chatflow will return dict so that this wil cause json parse to failed
