@@ -31,8 +31,9 @@ class McpSseTool(Tool):
             logging.warning("Model didn't provide arguments")
             arguments_json = {}
         try:
-            arguments = json.loads(arguments_json)
-            # print(f"argument_load: {arguments}")
+            # arguments = json.loads(arguments_json)
+            arguments = ast.literal_eval(arguments_json)
+            print(f"argument_load: {arguments}")
 
             # print(f"MCP_SSE_ARGS_JSON: {arguments}")
         except json.JSONDecodeError as e:
